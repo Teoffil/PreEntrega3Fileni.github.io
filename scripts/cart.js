@@ -102,12 +102,12 @@ if (localStorage.getItem('carrito')) {
 }
 
 
+
 /* ELIMINAR TODO */
 
 const eliminarTodo = () => {
     carrito = []; // Vaciamos el arreglo de carrito
     localStorage.removeItem('carrito'); // Eliminamos el carrito del almacenamiento local
-    
     const contenedor = document.getElementById('carrito-contenedor');
     if (contenedor.children.length === 0) {
         contenedor.innerHTML = '<p>No tienes ningún producto en el carrito</p>';
@@ -126,6 +126,13 @@ btnFinalizarCompra.addEventListener('click', finalizarCompra);
 
 function finalizarCompra() {
     const precioTotal = document.getElementById('precioTotal').textContent;
-    alert(`Felicitaciones! tu compra total es de $${precioTotal}`);
-    eliminarTodo();
+    Swal.fire(
+        'Felicitaciones!',
+        `Tu compra total es de $${precioTotal}`,
+        'Estaremos en contacto!'
+    ).then(() => {
+        eliminarTodo();
+    });
 }
+
+
