@@ -174,3 +174,48 @@ select {
 .boton-eliminar:focus {
   outline: none;
 }
+
+.eliminar-todo {
+  background-color: #ff6961;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.eliminar-todo:hover {
+  background-color: #ff6961;
+}
+
+.eliminar-todo:active {
+  background-color: #ff6961;
+  color: white;
+}
+
+.eliminar-todo:focus {
+  outline: none;
+}
+
+
+.final {
+  background-color: #A267C4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  float: right;
+}
+
+.final:hover {
+  background-color: #8e5cb8;
+}

@@ -59,9 +59,17 @@ const pintarCarrito = (carrito) => {
 
 const eliminarProductoCarrito = (productoId) => {
     const index = carrito.findIndex(producto => producto.id == productoId)
-    carrito.splice(index, 1)
+    const producto = carrito[index]
+
+    if (producto.cantidad > 1) {
+        producto.cantidad -= 1
+    } else {
+        carrito.splice(index, 1)
+    }
+
     pintarCarrito(carrito)
     actualizarTotalesCarrito(carrito)
+    guardarCarritoStorage(carrito)
 };
 
 const actualizarTotalesCarrito = (carrito) => {
@@ -91,4 +99,33 @@ if (localStorage.getItem('carrito')) {
     carrito = obtenerCarritoStorage()
     pintarCarrito(carrito)
     actualizarTotalesCarrito(carrito)
+}
+
+
+/* ELIMINAR TODO */
+
+const eliminarTodo = () => {
+    carrito = []; // Vaciamos el arreglo de carrito
+    localStorage.removeItem('carrito'); // Eliminamos el carrito del almacenamiento local
+    
+    const contenedor = document.getElementById('carrito-contenedor');
+    if (contenedor.children.length === 0) {
+        contenedor.innerHTML = '<p>No tienes ningún producto en el carrito</p>';
+    } else {
+      pintarCarrito(carrito); // Actualizamos el carrito en la vista
+      actualizarTotalesCarrito(carrito); // Actualizamos los totales del carrito en la vista
+    }
+};
+
+
+
+/* Mensaje final */
+
+const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+btnFinalizarCompra.addEventListener('click', finalizarCompra);
+
+function finalizarCompra() {
+    const precioTotal = document.getElementById('precioTotal').textContent;
+    alert(`Felicitaciones! tu compra total es de $${precioTotal}`);
+    eliminarTodo();
 }
